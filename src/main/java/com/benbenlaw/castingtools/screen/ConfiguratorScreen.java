@@ -20,6 +20,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
@@ -225,6 +226,9 @@ public class ConfiguratorScreen extends AbstractContainerScreen<ConfiguratorMenu
 
         if (settings != null) {
             renderSettingsHeader(guiGraphics, settings);
+            if (isOver(mouseX, mouseY, leftPos + LIST_X, rowY(0), LIST_WIDTH, ROW_HEIGHT)) {
+                renderModifierTooltip(guiGraphics, settings.id(), mouseX, mouseY);
+            }
             return;
         }
 
@@ -238,6 +242,33 @@ public class ConfiguratorScreen extends AbstractContainerScreen<ConfiguratorMenu
         }
 
         renderScrollbar(guiGraphics, entries.size());
+
+        for (ModifierSlider slider : sliders) {
+            if (isOver(mouseX, mouseY, slider.getX(), slider.getY(), SLIDER_WIDTH, ROW_HEIGHT)) {
+                renderModifierTooltip(guiGraphics, slider.entry.id(), mouseX, mouseY);
+                break;
+            }
+        }
+    }
+
+    private static boolean isOver(int mouseX, int mouseY, int x, int y, int width, int height) {
+        return mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height;
+    }
+
+    /** The same name, description, conflicts and max levels the JEI modifier entry shows. */
+    private void renderModifierTooltip(GuiGraphicsExtractor guiGraphics, Identifier id, int mouseX, int mouseY) {
+        Modifier modifier = ModifierRegistry.MODIFIER_REGISTRY.getValue(id);
+        if (modifier == null) return;
+
+        List<FormattedCharSequence> lines = new ArrayList<>();
+        for (Component line : modifier.getInfoTooltip()) {
+            if (line.getString().isEmpty()) {
+                lines.add(FormattedCharSequence.EMPTY);
+            } else {
+                lines.addAll(font.split(line, 200));
+            }
+        }
+        guiGraphics.setTooltipForNextFrame(font, lines, mouseX, mouseY);
     }
 
     private void renderSettingsHeader(GuiGraphicsExtractor guiGraphics, Entry entry) {

@@ -1,4 +1,4 @@
-// 26.1.2	2026-09-21T13:32:42.9938868	Tags for minecraft:item mod id castingtools
+// 26.1.2	2026-11-03T10:49:44.5940378	Tags for minecraft:item mod id castingtools
 db1e03703684ff6ecc870c39cf9dca92dce328d5 data/castingtools/tags/item/all_armors.json
 b72a9894bf3cfb2463a944c48380f815b57ff5e0 data/castingtools/tags/item/all_melee_weapons.json
 de75671f136ad29ecb1fee30fc8326bbb0cce33f data/castingtools/tags/item/all_ranged_weapons.json
@@ -18,6 +18,7 @@ e876d30acc468aa3a28126bd543fa503104ae7cf data/c/tags/item/tools/bow.json
 470a70efb027fd362c378e3ab4a519a50f22f283 data/c/tags/item/tools/crossbow.json
 447ed2a34382028c201c4f3552dae8d446cd8cb2 data/minecraft/tags/item/axes.json
 0b87d4edd60113445d8baa1aff0e69772c1aa14c data/minecraft/tags/item/chest_armor.json
+51c0778e5aefa4dc879c6b32e381654940de67ef data/minecraft/tags/item/cluster_max_harvestables.json
 e1339441ac9cb7df7eb3d7e8558d0854d50d08a6 data/minecraft/tags/item/foot_armor.json
 f1c3d79554bacc37166afd366d0fc5caa3718d1f data/minecraft/tags/item/head_armor.json
 d721f703006a6fcf8a9a4c25877bc8c4c643096b data/minecraft/tags/item/hoes.json

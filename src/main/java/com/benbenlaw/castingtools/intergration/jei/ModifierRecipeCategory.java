@@ -151,24 +151,9 @@ public class ModifierRecipeCategory implements IRecipeCategory<ModifierRecipe> {
 
         if (mouseX >= 2 && mouseX <= 2 + textWidth && mouseY >= 1 && mouseY <= 1 + textHeight) {
 
-            tooltip.add(recipe.modifier().getDisplayName());
-            tooltip.add(recipe.modifier().getDescription());
-
-            if (!recipe.modifier().getIncompatibleModifiers().isEmpty()) {
-                tooltip.add(Component.empty());
-                tooltip.add(Component.translatable("modifier.castingtools.incompatible")
-                        .withStyle(ChatFormatting.RED));
-
-                for (Modifier conflict : recipe.modifier().getIncompatibleModifiers()) {
-                    tooltip.add(Component.literal("- ").append(conflict.getDisplayName())
-                            .withStyle(ChatFormatting.DARK_RED));
-                }
+            for (Component line : recipe.modifier().getInfoTooltip()) {
+                tooltip.add(line);
             }
-
-            tooltip.add(Component.translatable("modifier.castingtools.max_level", recipe.modifier().getMaxLevel())
-                    .withStyle(ChatFormatting.AQUA));
-            tooltip.add(Component.translatable("modifier.castingtools.max_enhanced_level", recipe.modifier().getMaxEnhancedLevel())
-                    .withStyle(ChatFormatting.AQUA));
         }
     }
 }

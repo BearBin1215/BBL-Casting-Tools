@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 
@@ -50,7 +51,9 @@ public class ExcavationModifier extends Modifier {
     }
 
     public List<BlockPos> getExtraBlocks(BlockPos origin, Player player, Level level, BlockState originState, int toolLevel) {
-        Direction face = ModifierEvents.lastHitDirectionMap.getOrDefault(player.getUUID(), Direction.DOWN);
+        Direction face = player instanceof FakePlayer
+                ? Direction.getApproximateNearest(player.getLookAngle()).getOpposite()
+                : ModifierEvents.lastHitDirectionMap.getOrDefault(player.getUUID(), Direction.DOWN);
 
         List<BlockPos> area = ModifierUtils.getExcavationPlane(origin, face, toolLevel);
 

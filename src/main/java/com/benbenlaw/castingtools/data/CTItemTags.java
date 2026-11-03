@@ -32,6 +32,9 @@ public class CTItemTags extends ItemTagsProvider {
         //Valid
         tag(CTTags.Items.VALID_UPGRADER_ITEMS);
 
+        //Cluster Max Harvestables
+        tag(ItemTags.CLUSTER_MAX_HARVESTABLES).add(CTItems.OMNITHIUM_PICKAXE.get());
+
         //Tools
         tag(ItemTags.PICKAXES).add(CTItems.OMNITHIUM_PICKAXE.get());
         tag(ItemTags.SHOVELS).add(CTItems.OMNITHIUM_SHOVEL.get());

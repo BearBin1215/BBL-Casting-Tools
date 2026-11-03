@@ -127,6 +127,11 @@ public class CTLangProvider extends LanguageProvider {
         add("modifier.castingtools.pulverizing.description", "Crushes up certain blocks when broken");
         add("modifier.castingtools.treasure.description", "Find additional drops from certain blocks when broken");
         add("modifier.castingtools.lightning_strike.description", "Summons a lightning bolt when you hit a mob dealing additional damage");
+        add("modifier.castingtools.infinity.description", "Bows no longer require arrows to be fired");
+        add("modifier.castingtools.power.description", "Increases damage of arrows fired from a bow");
+        add("modifier.castingtools.punch.description", "Increases knockback effect of arrows fired from a bow");
+        add("modifier.castingtools.jets.description", "Provides limited flight ability");
+        add("modifier.castingtools.experience_boost.description", "Increases experience drops from all sources");
 
         add("modifier.castingtools.modifier", "Modifier: %s");
 

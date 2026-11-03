@@ -2,7 +2,6 @@ package com.benbenlaw.castingtools.intergration.jei;
 
 import com.benbenlaw.castingtools.modifier.Modifier;
 import mezz.jei.api.ingredients.IIngredientRenderer;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -25,10 +24,6 @@ public class ModifierIngredientRenderer implements IIngredientRenderer<Modifier>
 
     @Override
     public List<Component> getTooltip(Modifier ingredient, TooltipFlag tooltipFlag) {
-        return List.of(
-                Component.translatable("modifier.castingtools.modifier", ingredient.getDisplayName(),
-                ingredient.getDescription()),
-                Component.translatable("modifier.castingtools.max_level", ingredient.getMaxLevel()).withStyle(ChatFormatting.AQUA),
-                Component.translatable("modifier.castingtools.max_enhanced_level", ingredient.getMaxEnhancedLevel()).withStyle(ChatFormatting.AQUA));
+        return ingredient.getInfoTooltip();
     }
 }

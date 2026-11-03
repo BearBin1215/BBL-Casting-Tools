@@ -1,6 +1,7 @@
 package com.benbenlaw.castingtools.modifier;
 
 import com.benbenlaw.castingtools.utils.DropContext;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -22,6 +23,8 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -166,6 +169,25 @@ public abstract class Modifier {
 
     public Component getDescription() {
         return Component.translatable(data.description());
+    }
+
+    /** Name, description, conflicts and max levels, shown by the JEI modifier entry and the Configurator. */
+    public List<Component> getInfoTooltip() {
+        List<Component> lines = new ArrayList<>();
+        lines.add(getDisplayName());
+        lines.add(getDescription());
+
+        if (!getIncompatibleModifiers().isEmpty()) {
+            lines.add(Component.empty());
+            lines.add(Component.translatable("modifier.castingtools.incompatible").withStyle(ChatFormatting.RED));
+            for (Modifier conflict : getIncompatibleModifiers()) {
+                lines.add(Component.literal("- ").append(conflict.getDisplayName()).withStyle(ChatFormatting.DARK_RED));
+            }
+        }
+
+        lines.add(Component.translatable("modifier.castingtools.max_level", getMaxLevel()).withStyle(ChatFormatting.AQUA));
+        lines.add(Component.translatable("modifier.castingtools.max_enhanced_level", getMaxEnhancedLevel()).withStyle(ChatFormatting.AQUA));
+        return lines;
     }
 
     protected String getTranslationKey() {
