@@ -29,7 +29,13 @@ public class ClientEvent {
     @SubscribeEvent
     public static void onPlayerJump(ClientTickEvent.Pre event) {
 
-        KeyMapping jumpKey = Minecraft.getInstance().options.keyJump;
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.getConnection() == null) {
+            lastState = false;
+            return;
+        }
+
+        KeyMapping jumpKey = minecraft.options.keyJump;
         boolean isJumping = jumpKey.isDown();
 
         if (isJumping != lastState) {
